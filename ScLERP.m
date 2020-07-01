@@ -1,6 +1,11 @@
 clc
 clearvars
 
+% Dimensions for Cube Example
+L = 3;
+W = 2;
+H = 1;
+
 %% Initial (A) and Final (B) Configurations
 
 R_A = rot(10*pi/180,'x');
@@ -8,6 +13,7 @@ p_A = [0 0 0];
 
 R_B = rot(20*pi/180,'x') * rot(70*pi/180,'y') * rot(40*pi/180,'z');
 p_B = [3 3 3];
+% p_B = ((R_A - R_B) * [L/2 -W/2 -H/2].').' + p_A; % Tilting about one corner of the Cube
 
 %% Configurations --> Unit Dual Quaternians
 
@@ -37,12 +43,8 @@ for i = 1:length(tau)
 end
 
 %% 3D Simulation
-% Cube Dimensions
-length = 3;
-width = 2;
-height = 1;
-plot3D(length,width,height,R_A,p_A,R_B,p_B,tau,R,p)
 
+plot3D(L,W,H,R_A,p_A,R_B,p_B,tau,R,p)
 
 %% Functions
 
